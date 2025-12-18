@@ -3,6 +3,7 @@ import { useProducts } from './hooks/useProducts';
 import { SearchBar } from './components/SearchBar';
 import { ProductList } from './components/ProductList';
 import { ProductModal } from './components/ProductModal';
+import { Footer } from './components/Footer';
 import type { Product } from './types/product';
 import './styles/App.css'; 
 
@@ -24,6 +25,7 @@ function App() {
     <div className="container">
       <header>
         <h1>Магазин электроники</h1>
+        <div className="line"></div>
         <SearchBar value={search} onChange={setSearch} />
       </header>
 
@@ -38,6 +40,7 @@ function App() {
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
       />
+      <Footer />
     </div>
   );
 }
