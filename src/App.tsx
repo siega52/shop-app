@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useMemo } from 'react';
+import { useProducts } from './hooks/useProducts';
+import { SearchBar } from './components/SearchBar';
+import { ProductList } from './components/ProductList';
+import { ProductModal } from './components/ProductModal';
+import type { Product } from './types/product';
+import './styles/App.css'; 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { products, loading, error } = useProducts();
+  const [search, setSearch] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [products, search]);
+
+  if (loading) return <div className="loading">Загрузка товаров...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <header>
+        <h1>Магазин электроники</h1>
+        <SearchBar value={search} onChange={setSearch} />
+      </header>
+
+      <main>
+        <ProductList
+          products={filteredProducts}
+          onProductClick={setSelectedProduct}
+        />
+      </main>
+
+      <ProductModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
