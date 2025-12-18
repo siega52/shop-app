@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/Vite-4.0-orange" alt="Vite">
   <img src="https://img.shields.io/badge/TypeScript-5.0-blue" alt="TypeScript">
   <img src="https://img.shields.io/badge/adaptive-UI-green" alt="Adaptive UI">
-  <img src="https://img.shields.io/badge/license-MIT-blue" alt="License">
 </p>
 
 **Shop-app** — современный интернет-магазин электроники с адаптивным дизайном, созданный на React + TypeScript в рамках тестового задания.
