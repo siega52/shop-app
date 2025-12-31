@@ -18,7 +18,7 @@
 - **Высокая производительность** — оптимизация с помощью Vite и useMemo
 - **Hover-эффекты** — интерактивные карточки товаров
 
-## Скриншоты
+## Демо вебсайта
 
 ![Image alt](https://github.com/siega52/shop-app/raw/main/src/img/img1.jpg)
 ![Image alt](https://github.com/siega52/shop-app/raw/main/src/img/img2.jpg)
